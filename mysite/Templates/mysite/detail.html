@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="block">
+
+    <div class="box" style="background-color:lightpink; margin: 30px;">
+
+        <h1 class="title" style="text-align: center;">
+            {{ flower.name }}
+        </h1>
+        <h1 class="subtitle" style="text-align: center;">
+            category: {{ flower.category}}
+        </h1>
+        <p>
+            {{ flower.description }}
+        </p>
+
+
+        <div class="notification is-info">
+
+            <p style="margin-left: auto; margin-right:auto; text-align:center ;">
+
+                <span class="icon has-text-warning">
+                    <i class="fa-solid fa-calendar-week"></i>
+                </span>
+                <span class='subtitle' style="text-align: center;">
+                    {% for i in flower.tag.all %}
+                    {{ i.tag }}
+                    {% endfor %}
+                </span>
+            </p>
+
+        </div>
+
+        <a href="{% url 'mysite' %}" class="button is-primary">
+            Back
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+{% endblock %}

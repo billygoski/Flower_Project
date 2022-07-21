@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="block" style="margin: 30px;">
+
+    <form class="block" action="/" method="get">
+        <div class="field is-grouped">
+            <p class="control is-expanded">
+                <input id="q" name="q" value="{{ request.GET.q }}" class="input is-primary is-rounded" type="text"
+                    placeholder="Search...">
+            </p>
+            <button class=" button is-success is-rounded" type="submit">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <div class="block">
+        <a href="{% url 'create' %}" class="button is-info is-outlined is-rounded" style="width: 100%;">
+             CREATE FLOWER
+        </a>
+    </div>
+
+    <div class="block">
+
+        {% for flower in flowers %}
+
+
+        <div class="box" style="background-color:lightpink;">
+
+            <div class="block">
+
+                <a href="{% url 'detail' flower.slug %}">
+
+                    <h1 class="title" style="text-align: center;">
+                        {{ flower.name }}
+                    </h1>
+                    <h1 class="title is-5" style="text-align: center;">
+                        {{ flower.category}}
+                    </h1>
+    
+                    <p style="margin-left: auto; margin-right:auto; text-align:center;">
+                        <span class="icon has-text-info">
+                            <i class="fa-solid fa-calendar-week"></i>
+                        </span>
+                        <span class="subtitle" style="text-align: center;">
+                            {% for i in flower.tag.all %}
+                            <a href="{% url 'tag' i.slug %}"> {{ i.tag}} </a>
+                            {% endfor %}
+                        </span>
+                    </p>
+    
+                </a>
+
+            </div>
+
+            <div class="block" style="margin-left:auto; margin-right:auto; text-align: center;">
+                <span>
+                   <a href="{% url 'edit' sg=flower.slug %}" class="button is-info is-rounded">
+                    Edit
+                   </a>
+                </span>
+                <span>
+                    <a href="{% url 'delete' pk=flower.pk %}" class="button is-danger is-rounded">
+                     Delete
+                    </a>
+                 </span>
+                
+            </div>
+
+        </div>
+
+
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<div class="block">
+    <div class="box" style="background-color: lightpink;">
+
+        <div class="block">
+            <h1 class="title" style="text-align: center;">FLOWER CREATION FORM</h1>
+        </div>
+
+        <div class="block">
+            <form action="" method="post" style="margin-left: auto; margin-right: auto; text-align: center;">
+                {% csrf_token %}
+                <div class="block">
+
+                    <div class="block">
+                        <span> NAME: </span>
+                        <span> {{ form.name }} </span>
+
+                    </div>
+                    <div class="block">
+                        <span> DESCRIPTION: </span>
+                        <span> {{ form.description }} </span>
+
+                    </div>
+                    <div class="block">
+                        <span> CATEGORY: </span>
+                        <span> {{ form.category }} </span>
+                    </div>
+                    <div class="block">
+                        <span> TAGS: </span>
+                        <span> {{ form.tag }} </span>
+                    </div>
+
+                    <button class="button is-info" type="submit" style="width:100% ;">
+                        Done
+                    </button>
+
+                </div>
+            </form>
+        </div>
+        <div class="block">
+            <a href="{% url 'mysite' %}" class="button is-primary">Back</a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
